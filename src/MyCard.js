@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     })
   },
   expandOpen: {
-    transform: "rotate(180deg)"
+    transform: "rotate(90deg)"
   }
 }));
 
@@ -73,9 +73,9 @@ export default function MyCard({ details }) {
     <h2>{details.ip}</h2>
   ) : (
     <div
-      style={{ display: "flex", justifyContent: "center", Width: "960px" }}
+      style={{ display: "flex", justifyContent: "center", Width: "1280px" }}
     >
-      <Card className={classes.root} width="960px">
+      <Card className={classes.root} width="1280px">
         <CardHeader
           avatar={
             <Avatar
@@ -122,7 +122,7 @@ export default function MyCard({ details }) {
             <ExpandMoreIcon />
           </IconButton>
         </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <Collapse in={expanded} timeout="auto" orientation={'horizontal'} unmountOnExit>
           <CardContent>
             <Typography paragraph>Some Interesting Facts!</Typography>
             <Typography paragraph>Capital City: {countryDetails.capital}</Typography>
