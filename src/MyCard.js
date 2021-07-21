@@ -13,13 +13,13 @@ import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-// import { DateTime } from "luxon";
+import { DateTime } from "luxon";
 import L from "leaflet";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: "275",
-    width: "960",
+    width: "70vw",
     textAlign: "center"
   },
   
@@ -38,7 +38,10 @@ const useStyles = makeStyles((theme) => ({
     transform: "rotate(90deg)"
   }
 }));
-
+const dt = DateTime.now();
+var local = DateTime.local();
+var rezoned = local.setZone("America/Los_Angeles");
+console.log(rezoned)
 export default function MyCard({ details }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -55,16 +58,12 @@ export default function MyCard({ details }) {
         setisCardLoading(false);
       });
   }, []);
-  console.log(countryDetails);
 
   const markerIcon = new L.Icon({
     iconUrl:
       "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png",
     iconSize: [22, 41]
   });
-
-  // var local = DateTime.local();
-  // var rezoned = local.setZone("Europe/Paris");
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -73,10 +72,11 @@ export default function MyCard({ details }) {
     <h2>{details.ip}</h2>
   ) : (
     <div
-      style={{ display: "flex", justifyContent: "center", Width: "1280px" }}
+      style={{ display: "flex", justifyContent: "center", Width: "70vw" }}
     >
       <Card className={classes.root} width="1280px">
         <CardHeader
+        height = '10vh'
           avatar={
             <Avatar
               aria-label="recipe"
@@ -87,7 +87,10 @@ export default function MyCard({ details }) {
             </Avatar>
           }
           title={details.location.city + ", " + details.location.region}
-          subheader={new Date().toLocaleString() + ""}
+          subheader={dt.toLocaleString(DateTime.DATETIME_MED)+ ", " + dt.zoneName }
+          
+         subheader ={rezoned.toLocaleString(DateTime.DATETIME_MED)+ ", " + rezoned.zoneName  } 
+
         />
 
         <CardContent>

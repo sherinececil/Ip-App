@@ -2,8 +2,6 @@
 import './App.css';
 import { useState, useEffect } from "react";
 import MyCard from "./MyCard";
-import ReactDOM from "react-dom";
-
 import "leaflet/dist/leaflet.css";
 
 function App() {
@@ -16,7 +14,6 @@ function App() {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setDetails(data);
         setIsLoading(false);
       });
