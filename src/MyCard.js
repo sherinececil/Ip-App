@@ -124,9 +124,17 @@ export default function MyCard({ details }) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Some Interesting Facts!</Typography>
+            <Typography paragraph>Continent: {countryDetails.region}</Typography>
             <Typography paragraph>Capital City: {countryDetails.capital}</Typography>
-
+            <Typography paragraph>Numeric code: {countryDetails.numericCode}</Typography>
+            <Typography paragraph>Borders with:</Typography>
+            {countryDetails.borders.map((item) => <Typography paragraph>{item} </Typography>)}
+            <Typography paragraph>Spoken languages:</Typography>
+            {countryDetails.languages.map((item) => <Typography paragraph>{item.name} </Typography>)}    
+            <Typography paragraph>Time Zones:</Typography>
+            {countryDetails.timezones.map((item) => <Typography paragraph>{item} </Typography>)}
+            <Typography paragraph>Currency:</Typography>
+            {countryDetails.currencies.map((item) => <Typography paragraph>{item.name}</Typography>)}
           </CardContent>
         </Collapse>
       </Card>
