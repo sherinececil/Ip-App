@@ -76,7 +76,6 @@ export default function MyCard({ details }) {
     >
       <Card className={classes.root} width="1280px">
         <CardHeader
-        height = '10vh'
           avatar={
             <Avatar
               aria-label="recipe"
@@ -86,15 +85,25 @@ export default function MyCard({ details }) {
               {details.location.country}
             </Avatar>
           }
-          title={details.location.city + ", " + details.location.region}
-          subheader={dt.toLocaleString(DateTime.DATETIME_MED)+ ", " + dt.zoneName }
-          
-         subheader ={rezoned.toLocaleString(DateTime.DATETIME_MED)+ ", " + rezoned.zoneName  } 
+          title={
+             <Typography variant="h5" component="h2"> 
+           {details.location.city + ", " + details.location.region}  
+             </Typography>
+          }
+          subheader={
+             <Typography className={classes.pos} color="textSecondary">{dt.toLocaleString(DateTime.DATETIME_MED)+ ", " + dt.zoneName }
+             <br />
+             {rezoned.toLocaleString(DateTime.DATETIME_MED)+ ", " + rezoned.zoneName   }
+             </Typography>
+          }
+            
+      
 
+          
         />
 
         <CardContent>
-          {/*  */}
+          {/* className={classes.subheader} */}
           
            <MapContainer center={position} zoom={13} scrollWheelZoom={false}>
             <TileLayer
@@ -127,16 +136,16 @@ export default function MyCard({ details }) {
         </CardActions>
         <Collapse in={expanded} timeout="auto" orientation={'horizontal'} unmountOnExit>
           <CardContent>
-            <Typography paragraph>Continent: {countryDetails.region}</Typography>
-            <Typography paragraph>Capital City: {countryDetails.capital}</Typography>
-            <Typography paragraph>Numeric code: {countryDetails.numericCode}</Typography>
-            <Typography paragraph>Borders with:</Typography>
+            <Typography paragraph><b>Continent:</b> {countryDetails.region}</Typography>
+            <Typography paragraph><b>Capital City:</b> {countryDetails.capital}</Typography>
+            <Typography paragraph><b>Numeric code:</b> {countryDetails.numericCode}</Typography>
+            <Typography paragraph><b>Borders with:</b></Typography>
             {countryDetails.borders.map((item) => <Typography paragraph>{item} </Typography>)}
-            <Typography paragraph>Spoken languages:</Typography>
+            <Typography paragraph><b>Spoken languages:</b></Typography>
             {countryDetails.languages.map((item) => <Typography paragraph>{item.name} </Typography>)}    
-            <Typography paragraph>Time Zones:</Typography>
+            <Typography paragraph><b>Time Zones:</b></Typography>
             {countryDetails.timezones.map((item) => <Typography paragraph>{item} </Typography>)}
-            <Typography paragraph>Currency:</Typography>
+            <Typography paragraph><b>Currency:</b></Typography>
             {countryDetails.currencies.map((item) => <Typography paragraph>{item.name}</Typography>)}
           </CardContent>
         </Collapse>
